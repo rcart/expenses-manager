@@ -1,0 +1,94 @@
+/* Styles for main containers */
+.wrapper {
+  border: 2px solid red;
+  padding: 10px;
+  max-width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.container-incomes {
+  border: 2px solid cyan;
+  padding: 10px;
+  margin: 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-expenses {
+  border: 2px solid cyan;
+  padding: 10px;
+  margin: 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-Incomes {
+  border: 2px solid blue;
+  margin: 5px;
+  text-align: center;
+  flex: 0;
+}
+
+.header-Expenses{
+  border: 2px solid blue;
+  margin: 5px;
+  text-align: center;
+  flex: 0;
+}
+
+/* Styles for List containers */
+.list-container-incomes {
+  border: 2px solid orange;
+  list-style: none;
+}
+
+.list-container-expenses {
+  border: 2px solid purple;
+  list-style: none;
+}
+
+/* Styling List items */
+.list-container-incomes li {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
+.list-container-incomes li:last-child {
+  border-bottom: 0;
+}
+
+.list-container-incomes li p {
+  margin-top: 1px;
+  margin-bottom: 2px;
+}
+
+.list-container-expenses li {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
+.list-container-expenses li:last-child {
+  border-bottom: 0;
+}
+
+.list-container-expenses li p {
+  margin-top: 1px;
+  margin-bottom: 2px;
+}
+
+/* Text manipulation for items */
+#list-item-title {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+#list-item-amount {
+  font-size: 18px;
+  font-style: italic;
+}
