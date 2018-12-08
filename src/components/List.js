@@ -7,8 +7,12 @@ class List extends React.Component {
     return items.map(item => {
       return (
         <li key={item.id}>
-          <p><span id="list-item-title">{item.title}</span><span id="list-item-amount">${item.amount}</span></p>
-          <p>{item.description}</p>
+          <p>
+            <span id="list-item-title">{item.title}</span>
+            <span id="list-item-amount">${item.amount}</span>
+            <a href="#">&times;</a>
+          </p>
+          <p id="description">{item.description}</p>
         </li>
       );
     });
@@ -29,14 +33,14 @@ class List extends React.Component {
 
   render() {
     return (
-        <ul className={`list-container-${this.props.items}`}>
-          {this.props.items === 'incomes' &&
-              this.getIncomes(incomes)
-          }
-          {this.props.items === 'expenses' &&
-              this.getIncomes(expenses)
-          }
-        </ul>
+      <ul className={`list-container-${this.props.items}`}>
+        {this.props.items === 'incomes' &&
+          this.getIncomes(incomes)
+        }
+        {this.props.items === 'expenses' &&
+            this.getIncomes(expenses)
+        }
+      </ul>
     );
   }
 }

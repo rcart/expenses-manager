@@ -16,7 +16,7 @@ class App extends Component {
           <Header title="Incomes"/>
           <List items='incomes'/>
         </div>
-        <div className="container-incomes">
+        <div className="container-expenses">
           <Header title="Expenses"/>
           <List items='expenses'/>
         </div>
