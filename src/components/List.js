@@ -3,7 +3,7 @@ import { incomes, expenses } from '../data.js';
 
 class List extends React.Component {
 
-  getIncomes= (items) => {
+  getData= (items) => {
     return items.map(item => {
       return (
         <li key={item.id}>
@@ -18,27 +18,14 @@ class List extends React.Component {
     });
   }
 
-  getExpenses = (items) => {
-    return items.map(item => {
-      return (
-        <li key={item.id}>
-          <p>Title: {item.title}</p>
-          <p>Amount: {item.amount}</p>
-          <p>Description: {item.description}</p>
-        </li>
-      );
-    });
-
-  }
-
   render() {
     return (
       <ul className={`list-container-${this.props.items}`}>
         {this.props.items === 'incomes' &&
-          this.getIncomes(incomes)
+          this.getData(incomes)
         }
         {this.props.items === 'expenses' &&
-            this.getIncomes(expenses)
+            this.getData(expenses)
         }
       </ul>
     );

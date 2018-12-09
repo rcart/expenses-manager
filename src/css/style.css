@@ -81,3 +81,20 @@ p a {
   background-color: #f5f5f5;
 
 }
+
+
+/* Styling the footer */
+.footer {
+  border: 1px solid red;
+  display: flex;
+}
+
+#footer-text {
+  text-transform: uppercase;
+  flex: 1;
+}
+
+#footer-addBtn {
+  border: none;
+  flex: 1;
+}
