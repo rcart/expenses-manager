@@ -27,6 +27,7 @@
 .list-container-incomes,
 .list-container-expenses {
   list-style: none;
+  border-bottom: 1px solid rgba(0,128,128,0.3);
 }
 
 /* Styling List items */
@@ -85,16 +86,31 @@ p a {
 
 /* Styling the footer */
 .footer {
-  border: 1px solid red;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px;
 }
 
 #footer-text {
   text-transform: uppercase;
-  flex: 1;
+  justify-content: space-around;
 }
 
 #footer-addBtn {
-  border: none;
-  flex: 1;
+  background-color: #FFF;
+  padding: 4px;
+  height: 40px;
+  border: 2px solid darkcyan;
+}
+
+#footer-addBtn:hover {
+  background-color: #B0C4DE;
+}
+
+/* Styling the total amount */
+
+.total {
+  color: #2F4F4F;
+  margin-left: 10%;
 }
