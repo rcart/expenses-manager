@@ -3,6 +3,12 @@ import { incomes, expenses } from '../data.js';
 
 class List extends React.Component {
 
+  componentDidMount = () => {
+    // Here I'll update the App's state with the incomes/expenses from data.js
+    this.props.addItem(incomes, 'incomes');
+    this.props.addItem(expenses, 'expenses');
+  }
+
   getData= (items) => {
     return items.map(item => {
       return (
