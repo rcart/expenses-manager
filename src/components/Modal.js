@@ -41,7 +41,12 @@ class Modal extends React.Component {
   }
 
   handleInput = () => {
+    // Get the max id and add 1
+    let id = this.props.getMaxId(this.props.modalTitle.toLowerCase()+'s');
+    id = parseInt(id) + 1;
+
     const item = {
+      id,
       title: this.titleRef.current.value,
       amount: parseFloat(this.amountRef.current.value),
       description: this.descriptionRef.current.value

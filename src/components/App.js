@@ -50,6 +50,16 @@ class App extends Component {
     this.setState({ modalVisible: false });
   }
 
+  getMaxId = (from) => {
+    let items
+
+    if (this.state[from] > 0) items = [ ...this.state[from] ];
+    else items = this.state[from];
+
+    if (items.length === 0) return 1;
+    else return Math.max(...items.map(item => item.id));
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -82,6 +92,7 @@ class App extends Component {
           modalTitle={this.state.modalTitle}
           hideModal={this.hideModal}
           addItem={this.addItem}
+          getMaxId={this.getMaxId}
         />
       </div>
     );
