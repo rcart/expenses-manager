@@ -17,7 +17,7 @@ class App extends Component {
   addItem= (data, to) => {
     let items;
     if (this.state[to].length > 0) items = [ ...this.state[to], data ];
-    else items = data;
+    else items = [ data ];
     this.setState({ [to]: items });
   }
 
@@ -30,8 +30,12 @@ class App extends Component {
   }
 
   totalValues = (from) => {
-    const items = [ ...this.state[from] ];
-    if (items.length === 0) return false;
+    let items;
+    if (this.state[from].length > 0) items = [ ...this.state[from] ];
+    else items = [];
+
+    if (items.length === 0) return 0;
+
     let total = 0;
     for (let i of items) total += i.amount;
     return total;
@@ -53,10 +57,10 @@ class App extends Component {
   getMaxId = (from) => {
     let items
 
-    if (this.state[from] > 0) items = [ ...this.state[from] ];
+    if (this.state[from].length > 0) items = [ ...this.state[from] ];
     else items = this.state[from];
 
-    if (items.length === 0) return 1;
+    if (items.length === 0) return 0;
     else return Math.max(...items.map(item => item.id));
   }
 
@@ -68,6 +72,7 @@ class App extends Component {
           <List
             items='incomes'
             addItem={this.addItem}
+            listIncomes={this.state.incomes}
           />
           <h2 className="total">Total: <em>${this.totalValues('incomes')}</em></h2>
           <Footer
@@ -79,6 +84,7 @@ class App extends Component {
           <Header title="Expenses"/>
           <List
             items='expenses'
+            listExpenses={this.state.expenses}
             addItem={this.addItem}
           />
           <h2 className="total">Total: <em>${this.totalValues('expenses')}</em></h2>

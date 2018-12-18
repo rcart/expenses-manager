@@ -1,13 +1,6 @@
 import React from 'react';
-import { incomes, expenses } from '../data.js';
 
 class List extends React.Component {
-
-  componentDidMount = () => {
-    // Here I'll update the App's state with the incomes/expenses from data.js
-    this.props.addItem(incomes, 'incomes');
-    this.props.addItem(expenses, 'expenses');
-  }
 
   getData= (items) => {
     return items.map(item => {
@@ -28,10 +21,10 @@ class List extends React.Component {
     return (
       <ul className={`list-container-${this.props.items}`}>
         {this.props.items === 'incomes' &&
-          this.getData(incomes)
+          this.getData(this.props.listIncomes)
         }
         {this.props.items === 'expenses' &&
-            this.getData(expenses)
+            this.getData(this.props.listExpenses)
         }
       </ul>
     );
