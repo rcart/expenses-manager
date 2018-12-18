@@ -9,11 +9,15 @@ class App extends Component {
   state = {
     incomes: [],
     expenses: [],
-    modalVisible: true
+    maxId: null,
+    modalVisible: false,
+    modalTitle: ''
   };
 
   addItem= (data, to) => {
-    const items = [ ...this.state[to], data ];
+    let items;
+    if (this.state[to].length > 0) items = [ ...this.state[to], data ];
+    else items = data;
     this.setState({ [to]: items });
   }
 
@@ -29,9 +33,7 @@ class App extends Component {
     const items = [ ...this.state[from] ];
     if (items.length === 0) return false;
     let total = 0;
-    items.forEach((item, index) => {
-      for (let i of item) total += i.amount;
-    });
+    for (let i of items) total += i.amount;
     return total;
   }
 
@@ -40,9 +42,10 @@ class App extends Component {
   }
 
   // Modal handlers
-  showModal = () => {
-    this.setState({ modalVisible: true })
+  showModal = (title) => {
+    this.setState({ modalVisible: true, modalTitle: title })
   }
+
   hideModal = () => {
     this.setState({ modalVisible: false });
   }
@@ -56,8 +59,11 @@ class App extends Component {
             items='incomes'
             addItem={this.addItem}
           />
-          <h2 className="total">Total: {this.totalValues('incomes')}</h2>
-          <Footer title="Income"/>
+          <h2 className="total">Total: <em>${this.totalValues('incomes')}</em></h2>
+          <Footer
+            title="Income"
+            showModal={this.showModal}
+          />
         </div>
         <div className="container-expenses">
           <Header title="Expenses"/>
@@ -65,7 +71,7 @@ class App extends Component {
             items='expenses'
             addItem={this.addItem}
           />
-          <h2 className="total">Total: {this.totalValues('expenses')} </h2>
+          <h2 className="total">Total: <em>${this.totalValues('expenses')}</em></h2>
           <Footer
             title="Expense"
             showModal={this.showModal}
@@ -73,7 +79,9 @@ class App extends Component {
         </div>
         <Modal
           modalVisible={this.state.modalVisible}
+          modalTitle={this.state.modalTitle}
           hideModal={this.hideModal}
+          addItem={this.addItem}
         />
       </div>
     );

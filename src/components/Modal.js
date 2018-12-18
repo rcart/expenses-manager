@@ -2,15 +2,33 @@ import React from 'react';
 
 class Modal extends React.Component {
   state = {
-    isReady: false
+    isReady: false,
+    isVisible: false
   }
 
   dialog = React.createRef();
 
+  // Modal input refs
+  titleRef = React.createRef();
+  amountRef = React.createRef();
+  descriptionRef = React.createRef();
+
   componentDidMount() {
     this.setState({ isReady: true }, () => {
-      if (this.props.modalVisible) this.show();
+      if (this.props.modalVisible) {
+        this.setState({ isVisible: true });
+        this.show();
+      }
     });
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.modalVisible !== this.state.isVisible) {
+      this.setState({ isVisible: nextProps.modalVisible}, () => {
+        if (this.state.isVisible) this.show();
+        else this.hide();
+      });
+    }
   }
 
   show = () => {
@@ -22,11 +40,31 @@ class Modal extends React.Component {
     this.dialog.current.close();
   }
 
+  handleInput = () => {
+    const item = {
+      title: this.titleRef.current.value,
+      amount: parseFloat(this.amountRef.current.value),
+      description: this.descriptionRef.current.value
+    }
+    this.props.addItem(item, this.props.modalTitle.toLowerCase()+'s');
+    this.hide();
+  }
+
   render() {
     return (
-      <dialog className="modal" ref={this.dialog} style={{width: '40%'}}>
-      <h1>Testing</h1>
-      <button onClick={this.hide}>close</button>
+      <dialog className="modal" ref={this.dialog}>
+        <div className="modal-header">
+          <h1>New {this.props.modalTitle}</h1>
+        </div>
+        <div className="modal-input">
+          <input ref={this.titleRef} id="modal-input-title" type="text" placeholder={`Title of your ${this.props.modalTitle}`}/>
+          <input ref={this.amountRef} id="modal-input-amount" type="number" placeholder="amount"/>
+          <textarea ref={this.descriptionRef} id="modal-input-text" placeholder="Description"></textarea>
+        </div>
+        <div className="modal-footer">
+          <button onClick={this.hide}>Close</button>
+          <button onClick={this.handleInput}>Add</button>
+        </div>
       </dialog>
     );
   }
