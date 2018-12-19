@@ -63,12 +63,12 @@ class Modal extends React.Component {
         </div>
         <div className="modal-input">
           <input ref={this.titleRef} id="modal-input-title" type="text" placeholder={`Title of your ${this.props.modalTitle}`}/>
-          <input ref={this.amountRef} id="modal-input-amount" type="number" placeholder="amount"/>
+          <input ref={this.amountRef} id="modal-input-amount" type="number" placeholder="Amount"/>
           <textarea ref={this.descriptionRef} id="modal-input-text" placeholder="Description"></textarea>
         </div>
         <div className="modal-footer">
-          <button onClick={this.hide}>Close</button>
           <button onClick={this.handleInput}>Add</button>
+          <button onClick={this.hide}>Close</button>
         </div>
       </dialog>
     );

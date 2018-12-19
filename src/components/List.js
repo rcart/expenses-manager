@@ -9,7 +9,7 @@ class List extends React.Component {
           <p>
             <span id="list-item-title">{item.title}</span>
             <span id="list-item-amount">${item.amount}</span>
-            <a href="#">&times;</a>
+            <button>&times;</button>
           </p>
           <p id="description">{item.description}</p>
         </li>
