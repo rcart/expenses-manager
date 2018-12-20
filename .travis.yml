@@ -12,7 +12,7 @@ script:
 deploy:
     provider: heroku
     api_key:
-    secure: fd72ca21-590c-44ef-8902-a6309e106592
+        secure: "fd72ca21-590c-44ef-8902-a6309e106592"
     app: expenses-manager
     on:
       repo: rcart/expenses-manager
