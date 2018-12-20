@@ -26,10 +26,6 @@ class App extends Component {
     this.setState({ [data]: items });
   }
 
-  clearAllItems = (data) => {
-
-  }
-
   totalValues = (from) => {
     let items;
     if (this.state[from].length > 0) items = [ ...this.state[from] ];

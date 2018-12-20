@@ -1,6 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Footer extends React.Component {
+  static propTypes = {
+    showModal: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired
+  }
 
   render() {
     return (
