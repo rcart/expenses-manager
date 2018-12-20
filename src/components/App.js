@@ -22,7 +22,10 @@ class App extends Component {
   }
 
   removeItem = (data, index) => {
-
+    console.log(index);
+    const items = this.state[data].filter((i, j) => j !== index);
+    console.log(items);
+    this.setState({ [data]: items });
   }
 
   clearAllItems = (data) => {
@@ -72,7 +75,8 @@ class App extends Component {
           <List
             items='incomes'
             addItem={this.addItem}
-            listIncomes={this.state.incomes}
+            removeItem={this.removeItem}
+            listItems={this.state.incomes}
           />
           <h2 className="total">Total: <em>${this.totalValues('incomes')}</em></h2>
           <Footer
@@ -84,8 +88,9 @@ class App extends Component {
           <Header title="Expenses"/>
           <List
             items='expenses'
-            listExpenses={this.state.expenses}
             addItem={this.addItem}
+            removeItem={this.removeItem}
+            listItems={this.state.expenses}
           />
           <h2 className="total">Total: <em>${this.totalValues('expenses')}</em></h2>
           <Footer
