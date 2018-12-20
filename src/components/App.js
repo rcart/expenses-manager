@@ -22,9 +22,7 @@ class App extends Component {
   }
 
   removeItem = (data, index) => {
-    console.log(index);
     const items = this.state[data].filter((i, j) => j !== index);
-    console.log(items);
     this.setState({ [data]: items });
   }
 
