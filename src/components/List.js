@@ -22,7 +22,6 @@ class List extends React.Component {
   }
 
   handleClick = (index) => {
-    console.log(index);
     this.props.removeItem(this.props.items, index);
   }
 
