@@ -1,9 +1,8 @@
 {
-  "hompage": "https://rcart.github.io/expenses-manager",
-
   "name": "expenses-manager",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://rcart.github.io/expenses-manager",
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
