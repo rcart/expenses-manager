@@ -1,6 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class List extends React.Component {
+  static propTypes = {
+    items: PropTypes.string,
+    listItems: PropTypes.array,
+    handleClick: PropTypes.func,
+    removeItem: PropTypes.func
+  }
 
   getData= (items) => {
     return items.map((item, index) => {
