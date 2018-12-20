@@ -1,0 +1,19 @@
+# Only test this branches:
+branches:
+    only:
+        - master
+        - devel
+
+language: node_js
+node_js:
+        - 8.11
+script:
+        - npm run test
+deploy:
+    provider: heroku
+    api_key:
+    secure: fd72ca21-590c-44ef-8902-a6309e106592
+    app: expenses-manager
+    on:
+      repo: rcart/expenses-manager
+
