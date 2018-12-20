@@ -24,6 +24,10 @@
 }
 
 /* Styles for List containers */
+/* First, hide all IDs. They'll be used just to find the state's index to remove */
+#hidden-id {
+  display: none;
+}
 .list-container-incomes,
 .list-container-expenses {
   list-style: none;

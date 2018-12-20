@@ -41,6 +41,11 @@ class Modal extends React.Component {
   }
 
   handleInput = () => {
+    // Validate some fields
+    if (this.titleRef.current.value === '' || this.amountRef.current.value === '') {
+      alert('Title and Amount are required values');
+      return false;
+    }
     // Get the max id and add 1
     let id = this.props.getMaxId(this.props.modalTitle.toLowerCase()+'s');
     id = parseInt(id) + 1;
@@ -52,7 +57,12 @@ class Modal extends React.Component {
       description: this.descriptionRef.current.value
     }
     this.props.addItem(item, this.props.modalTitle.toLowerCase()+'s');
-    this.hide();
+
+    // Clean the input
+    this.titleRef.current.value = '';
+    this.amountRef.current.value = '';
+    this.descriptionRef.current.value = '';
+    this.titleRef.current.focus();
   }
 
   render() {
@@ -62,8 +72,8 @@ class Modal extends React.Component {
           <h1>New {this.props.modalTitle}</h1>
         </div>
         <div className="modal-input">
-          <input ref={this.titleRef} id="modal-input-title" type="text" placeholder={`Title of your ${this.props.modalTitle}`}/>
-          <input ref={this.amountRef} id="modal-input-amount" type="number" placeholder="Amount"/>
+          <input ref={this.titleRef} required id="modal-input-title" type="text" placeholder={`Title of your ${this.props.modalTitle}`}/>
+          <input ref={this.amountRef} required id="modal-input-amount" type="number" placeholder="Amount"/>
           <textarea ref={this.descriptionRef} id="modal-input-text" placeholder="Description"></textarea>
         </div>
         <div className="modal-footer">
