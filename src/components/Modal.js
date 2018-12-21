@@ -1,6 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Modal extends React.Component {
+  static propTypes = {
+    modalVisible: PropTypes.bool,
+    modalTitle: PropTypes.string,
+    hideModal: PropTypes.func,
+    addItem: PropTypes.func,
+    getMaxId: PropTypes.func
+  }
+
   state = {
     isReady: false,
     isVisible: false
@@ -22,6 +31,7 @@ class Modal extends React.Component {
     });
   }
 
+  // I need to check if the new props will match the current Modal's state
   componentWillReceiveProps (nextProps) {
     if (nextProps.modalVisible !== this.state.isVisible) {
       this.setState({ isVisible: nextProps.modalVisible}, () => {

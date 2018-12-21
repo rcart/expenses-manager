@@ -26,10 +26,6 @@ class App extends Component {
     this.setState({ [data]: items });
   }
 
-  clearAllItems = (data) => {
-
-  }
-
   totalValues = (from) => {
     let items;
     if (this.state[from].length > 0) items = [ ...this.state[from] ];
@@ -42,8 +38,18 @@ class App extends Component {
     return total;
   }
 
-  topValue = (data) => {
+  topValue = (from) => {
+    let items;
+    if (this.state[from].length > 0) items = [ ...this.state[from] ];
+    else items = [];
 
+    if(items.length === 0) return '';
+
+    let topVal;
+    topVal = Math.max( ...items.map(item => item.amount));
+    for (let i of items) {
+      if (i.amount === topVal) return ` ${i.title}, $${topVal}`;
+    }
   }
 
   // Modal handlers
@@ -80,6 +86,7 @@ class App extends Component {
           <Footer
             title="Income"
             showModal={this.showModal}
+            topValue={this.topValue}
           />
         </div>
         <div className="container-expenses">
@@ -94,6 +101,7 @@ class App extends Component {
           <Footer
             title="Expense"
             showModal={this.showModal}
+            topValue={this.topValue}
           />
         </div>
         <Modal
