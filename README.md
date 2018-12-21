@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rcart/expenses-manager.svg?branch=master)](https://travis-ci.org/rcart/expenses-manager)
+
 # EXPENSES MANAGER
 
 This web application gives you a clean, basic and minimal interface to track your **Incomes** and **Expenses**. It was developed using React and vanilla CSS.
