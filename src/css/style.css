@@ -158,3 +158,87 @@ p button:hover {
   display: flex;
   justify-content: space-around;
 }
+
+/* Making the app responsibe */
+/* This is for tablets */
+@media screen and (max-width: 768px) {
+  /* Main container */
+  .wrapper {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  /* Styling List items */
+  #list-item-title {
+    font-size: 14px;
+  }
+
+  .total {
+    font-size: 20px;
+  }
+
+  .list-container-incomes li,
+  .list-container-expenses li {
+    font-size: 14px;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+
+  #footer-text {
+    font-size: 14px;
+    width: 90%;
+  }
+
+  #footer-addBtn {
+    width: 90%;
+  }
+
+  /* Modal */
+  .modal {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+/* This is for tablets */
+@media screen and (max-width: 568px) {
+  .wrapper {
+    max-width: 98%;
+    padding: 5px;
+    flex-direction: column;
+  }
+
+  /* Styling List items */
+  #list-item-title {
+    font-size: 14px;
+  }
+
+  .total {
+    font-size: 20px;
+  }
+
+  #footer-text {
+    font-size: 14px;
+  }
+
+  .list-container-incomes li,
+  .list-container-expenses li {
+    font-size: 14px;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+
+  #footer-addBtn {
+    width: 90%;
+  }
+
+  /* Modal */
+  .modal {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
