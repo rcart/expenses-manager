@@ -13,7 +13,6 @@ class List extends React.Component {
     return items.map((item, index) => {
       return (
         <li key={item.id}>
-          <span id="hidden-id">{item.id}</span>
           <p>
             <span id="list-item-title">{item.title}</span>
             <span id="list-item-amount">${item.amount}</span>
