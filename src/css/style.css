@@ -159,7 +159,7 @@ p button:hover {
   justify-content: space-around;
 }
 
-/* Making the app responsibe */
+/* Making the app responsive */
 /* This is for tablets */
 @media screen and (max-width: 768px) {
   /* Main container */
@@ -202,7 +202,7 @@ p button:hover {
   }
 }
 
-/* This is for tablets */
+/* This is for mobiles */
 @media screen and (max-width: 568px) {
   .wrapper {
     max-width: 98%;

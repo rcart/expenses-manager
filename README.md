@@ -21,3 +21,6 @@ This web application gives you a clean, basic and minimal interface to track you
 I really like the CI/CD portion of this app far from the app functionality and design themself. I just need to push the code to GitHub, then Travis does the testing and if everything pass, then it confirms the commmit on GitHub and Heroku pulls the **master** branch to deploy the new code. Neat.
 
 Check the live version at: [Heroku](https://rcart-expenses-manager.herokuapp.com/)
+
+## Bugs
+* The app uses the new **dialog** HTML element that is currently not supported for some browsers, just Chrome. I'll have to add a [polyfill](https://github.com/GoogleChrome/dialog-polyfill) for this.
