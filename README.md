@@ -23,4 +23,4 @@ I really like the CI/CD portion of this app far from the app functionality and d
 Check the live version at: [Heroku](https://rcart-expenses-manager.herokuapp.com/)
 
 ## Bugs
-* The app uses the new **dialog** HTML element that is currently not supported for some browsers, just Chrome. I'll have to add a [polyfill](https://github.com/GoogleChrome/dialog-polyfill) for this.
+* The app uses the new **dialog** HTML element that is currently not supported for some browsers, including Safari and IE but full supported by Chrome and Firefox. I'll have to add a [polyfill](https://github.com/GoogleChrome/dialog-polyfill) for this.
