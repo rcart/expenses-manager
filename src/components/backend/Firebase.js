@@ -1,6 +1,6 @@
 // Main file for my Firebase Database backend
-import Rebase from 're-base';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyAWk_q7qPT6fyPt-gVxHc1RCG7o5BscFfQ",
@@ -10,7 +10,6 @@ const app = firebase.initializeApp({
   messagingSenderId: "937584653161"
 });
 
-const db = firebase.database(app);
-const base = firebase.createClass(app);
+const database = app.database().ref().child('expenses-tracker');
 
-export default base;
+export default database;

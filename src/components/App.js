@@ -3,6 +3,8 @@ import Header from './Header';
 import List from './List';
 import Footer from './Footer';
 import Modal from './Modal';
+// Firebase DB handler
+import database from './backend/Firebase';
 
 class App extends Component {
 
@@ -13,6 +15,10 @@ class App extends Component {
     modalVisible: false,
     modalTitle: ''
   };
+
+  componentDidMount() {
+    database.push().set({Testing: 'New Test'});
+  }
 
   addItem= (data, to) => {
     let items;
