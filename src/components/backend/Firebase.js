@@ -11,13 +11,5 @@ const app = firebase.initializeApp({
 });
 
 const database = app.database();
-// Expenses/Incomes children
-try {
-  database.ref().child('incomes');
-  database.ref().child('expenses');
-} catch(e) {
-  console.log(e);
-}
-
 
 export default database;
