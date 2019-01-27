@@ -10,14 +10,14 @@ class List extends React.Component {
   }
 
   getData= (items) => {
-    return items.map((item, index) => {
+    return items.map((item) => {
       return (
-        <li key={item.id}>
+        <li key={item.key}>
           <p>
             <span id="list-item-title">{item.title}</span>
             <span id="list-item-amount">${item.amount}</span>
             <button
-              onClick={() => this.handleClick(index)}>
+              onClick={() => this.handleClick(item.key)}>
               &times;
             </button>
           </p>
