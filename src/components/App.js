@@ -16,8 +16,9 @@ class App extends Component {
     modalTitle: ''
   };
 
-  componentDidMount() {
-    database.push().set({Testing: 'New Test'});
+  // Here I need to get all the items from Firebase and update the app's state
+  componentWillMount() {
+    database.ref('testing').set('Testing');
   }
 
   addItem= (data, to) => {
