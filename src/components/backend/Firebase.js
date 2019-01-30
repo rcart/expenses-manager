@@ -1,6 +1,7 @@
 // Main file for my Firebase Database backend
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
 
 const app = firebase.initializeApp({
   apiKey: "AIzaSyAWk_q7qPT6fyPt-gVxHc1RCG7o5BscFfQ",
@@ -11,5 +12,7 @@ const app = firebase.initializeApp({
 });
 
 const database = app.database();
+
+export { app };
 
 export default database;
