@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Modal from './Modal';
 // Firebase DB handler
 import database from './backend/Firebase';
+import auth from './backend/Firebase';
 
 class App extends Component {
 
@@ -46,6 +47,8 @@ class App extends Component {
     if (this.state[to].length > 0) items = [ ...this.state[to], data ];
     else items = [ data ];
     this.setState({ [to]: items });
+
+    // Testing
   }
 
   removeItem = (data, key) => {
