@@ -3,9 +3,9 @@ import Header from './Header';
 import List from './List';
 import Footer from './Footer';
 import Modal from './Modal';
+import SocialLogin from './SocialLogin';
 // Firebase DB handler
 import database from './backend/Firebase';
-import auth from './backend/Firebase';
 
 class App extends Component {
 
@@ -47,8 +47,6 @@ class App extends Component {
     if (this.state[to].length > 0) items = [ ...this.state[to], data ];
     else items = [ data ];
     this.setState({ [to]: items });
-
-    // Testing
   }
 
   removeItem = (data, key) => {
@@ -95,44 +93,47 @@ class App extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <div className="container-incomes">
-          <Header title="Incomes"/>
-          <List
-            items='incomes'
+      <div>
+        <div className="wrapper">
+          <div className="container-incomes">
+            <Header title="Incomes"/>
+            <List
+              items='incomes'
+              addItem={this.addItem}
+              removeItem={this.removeItem}
+              listItems={this.state.incomes}
+            />
+            <h2 className="total">Total: <em>${this.totalValues('incomes')}</em></h2>
+            <Footer
+              title="Income"
+              showModal={this.showModal}
+              topValue={this.topValue}
+            />
+          </div>
+          <div className="container-expenses">
+            <Header title="Expenses"/>
+            <List
+              items='expenses'
+              addItem={this.addItem}
+              removeItem={this.removeItem}
+              listItems={this.state.expenses}
+            />
+            <h2 className="total">Total: <em>${this.totalValues('expenses')}</em></h2>
+            <Footer
+              title="Expense"
+              showModal={this.showModal}
+              topValue={this.topValue}
+            />
+          </div>
+          <Modal
+            modalVisible={this.state.modalVisible}
+            modalTitle={this.state.modalTitle}
+            hideModal={this.hideModal}
             addItem={this.addItem}
-            removeItem={this.removeItem}
-            listItems={this.state.incomes}
-          />
-          <h2 className="total">Total: <em>${this.totalValues('incomes')}</em></h2>
-          <Footer
-            title="Income"
-            showModal={this.showModal}
-            topValue={this.topValue}
+            getMaxId={this.getMaxId}
           />
         </div>
-        <div className="container-expenses">
-          <Header title="Expenses"/>
-          <List
-            items='expenses'
-            addItem={this.addItem}
-            removeItem={this.removeItem}
-            listItems={this.state.expenses}
-          />
-          <h2 className="total">Total: <em>${this.totalValues('expenses')}</em></h2>
-          <Footer
-            title="Expense"
-            showModal={this.showModal}
-            topValue={this.topValue}
-          />
-        </div>
-        <Modal
-          modalVisible={this.state.modalVisible}
-          modalTitle={this.state.modalTitle}
-          hideModal={this.hideModal}
-          addItem={this.addItem}
-          getMaxId={this.getMaxId}
-        />
+        <SocialLogin />
       </div>
     );
   }
