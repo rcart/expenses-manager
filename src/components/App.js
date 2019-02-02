@@ -5,6 +5,8 @@ import Footer from './Footer';
 import Modal from './Modal';
 import SocialLogin from './SocialLogin';
 // Firebase DB handler
+import firebase from 'firebase/app';
+import { auth } from './backend/Firebase';
 import database from './backend/Firebase';
 
 class App extends Component {
@@ -13,19 +15,49 @@ class App extends Component {
     incomes: [],
     expenses: [],
     modalVisible: false,
-    modalTitle: ''
+    modalTitle: '',
+    // Firebase related state
+    currentUser: 'anonymous'
   };
 
   // Here I need to get all the items from Firebase and update the app's state
   // once the App component is mounted
   componentWillMount() {
-    this.getItemsFromDb('incomes');
-    this.getItemsFromDb('expenses');
+    const user = this.state.currentUser;
+    this.getItemsFromDb(user, 'incomes');
+    this.getItemsFromDb(user, 'expenses');
+    database.ref(`/${user}/`).on('child_added', snap => {
+      console.log('Snap', snap.val());
+    });
+    database.ref(`/${user}/`).on('child_removed', snap => {
+      console.log('Snap', snap.val());
+    });
+  }
+  handleGithubSignIn = (platform) => {
+    const provider = new firebase.auth[`${platform}AuthProvider`]();
+    auth.signInWithPopup(provider)
+      .then( res => {
+        this.setState({ currentUser: res.user.uid })
+        this.getItemsFromDb(res.user.uid, 'incomes');
+        this.getItemsFromDb(res.user.uid, 'expenses');
+      })
+      .catch( err => console.log(err))
   }
 
-  getItemsFromDb = (from) => {
+  signOutUsers = () => {
+    // After login out, I need to clear the app's state
+    firebase.auth().signOut().then(() => {
+      this.setState({ 
+        incomes: [],
+        expenses: [],
+        currentUser: 'anonymous'
+      });
+    });
+  }
+
+  getItemsFromDb = (user, from) => {
     let tmp = [];
-    database.ref(`/${from}/`).once('value')
+    database.ref(`${user}/${from}/`).once('value')
       .then( snap => {
         snap.forEach( item => {
           tmp.push({
@@ -41,7 +73,8 @@ class App extends Component {
 
   addItem= (data, to) => {
     // Saving data to Firebase before pushing to state
-    const key = database.ref().child(`${to}`).push(data).key;
+    const user = this.state.currentUser;
+    const key = database.ref().child(`${user}/${to}`).push(data).key;
     data.key = key;
     let items;
     if (this.state[to].length > 0) items = [ ...this.state[to], data ];
@@ -53,7 +86,7 @@ class App extends Component {
     const items = this.state[data].filter(item => item.key !== key);
     this.setState({ [data]: items });
     //Remove data from Firebase
-    database.ref(`/${data}/${key}`).remove();
+    database.ref(`/${this.state.currentUser}/${data}/${key}`).remove();
   }
 
   totalValues = (from) => {
@@ -133,7 +166,11 @@ class App extends Component {
             getMaxId={this.getMaxId}
           />
         </div>
-        <SocialLogin />
+        <SocialLogin 
+          handleGithubSignIn={this.handleGithubSignIn}
+          signOutUsers={this.signOutUsers}
+          currentUser={this.state.currentUser}
+        />
       </div>
     );
   }
