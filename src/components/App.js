@@ -26,12 +26,6 @@ class App extends Component {
     const user = this.state.currentUser;
     this.getItemsFromDb(user, 'incomes');
     this.getItemsFromDb(user, 'expenses');
-    database.ref(`/${user}/`).on('child_added', snap => {
-      console.log('Snap', snap.val());
-    });
-    database.ref(`/${user}/`).on('child_removed', snap => {
-      console.log('Snap', snap.val());
-    });
   }
   handleGithubSignIn = (platform) => {
     const provider = new firebase.auth[`${platform}AuthProvider`]();
@@ -80,6 +74,14 @@ class App extends Component {
     if (this.state[to].length > 0) items = [ ...this.state[to], data ];
     else items = [ data ];
     this.setState({ [to]: items });
+
+    // This listeners are going to fire the changes from the firebase db into this app
+    database.ref(`/${user}/`).on('child_added', snap => {
+      console.log('Snap', snap.val());
+    });
+    database.ref(`/${user}/`).on('child_removed', snap => {
+      console.log('Snap', snap.val());
+    });
   }
 
   removeItem = (data, key) => {
