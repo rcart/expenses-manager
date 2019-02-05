@@ -1,5 +1,6 @@
 /* Styles for main containers */
 .wrapper {
+  font-family: Helvetica, sans-serif;
   max-width: 70%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 20px;
@@ -241,4 +242,19 @@ p button:hover {
     width: 70%;
     margin: 0 auto;
   }
+}
+
+/* Styling the social logins */
+.social-login-container {
+  padding: 5px;
+  justify-content: space-evenly;
+  max-width: 80%;
+}
+
+.social-login-title {
+  font-weight: normal;
+}
+
+.social-login-container * {
+  font-size: 12px;
 }

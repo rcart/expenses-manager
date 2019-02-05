@@ -17,7 +17,8 @@ class App extends Component {
     modalVisible: false,
     modalTitle: '',
     // Firebase related state
-    currentUser: 'anonymous'
+    currentUser: 'anonymous',
+    socialPlatform: ''
   };
 
   // Here I need to get all the items from Firebase and update the app's state
@@ -27,11 +28,15 @@ class App extends Component {
     this.getItemsFromDb(user, 'incomes');
     this.getItemsFromDb(user, 'expenses');
   }
-  handleGithubSignIn = (platform) => {
+
+  handleSignIn = (platform) => {
     const provider = new firebase.auth[`${platform}AuthProvider`]();
     auth.signInWithPopup(provider)
       .then( res => {
-        this.setState({ currentUser: res.user.uid })
+        this.setState({
+          currentUser: res.user.uid,
+          socialPlatform: platform
+        })
         this.getItemsFromDb(res.user.uid, 'incomes');
         this.getItemsFromDb(res.user.uid, 'expenses');
       })
@@ -44,7 +49,8 @@ class App extends Component {
       this.setState({ 
         incomes: [],
         expenses: [],
-        currentUser: 'anonymous'
+        currentUser: 'anonymous',
+        socialPlatform: ''
       });
     });
   }
@@ -74,21 +80,14 @@ class App extends Component {
     if (this.state[to].length > 0) items = [ ...this.state[to], data ];
     else items = [ data ];
     this.setState({ [to]: items });
-
-    // This listeners are going to fire the changes from the firebase db into this app
-    database.ref(`/${user}/`).on('child_added', snap => {
-      console.log('Snap', snap.val());
-    });
-    database.ref(`/${user}/`).on('child_removed', snap => {
-      console.log('Snap', snap.val());
-    });
   }
 
   removeItem = (data, key) => {
+    const user = this.state.currentUser;
     const items = this.state[data].filter(item => item.key !== key);
     this.setState({ [data]: items });
     //Remove data from Firebase
-    database.ref(`/${this.state.currentUser}/${data}/${key}`).remove();
+    database.ref(`/${user}/${data}/${key}`).remove();
   }
 
   totalValues = (from) => {
@@ -169,7 +168,7 @@ class App extends Component {
           />
         </div>
         <SocialLogin 
-          handleGithubSignIn={this.handleGithubSignIn}
+          handleSignIn={this.handleSignIn}
           signOutUsers={this.signOutUsers}
           currentUser={this.state.currentUser}
         />
