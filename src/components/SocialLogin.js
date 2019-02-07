@@ -7,18 +7,18 @@ const SocialLogin = (props) => {
       <h5 className="social-login-title">
         You can save your items using: 
       </h5>
-      <span className="social-btn" onClick={() => props.handleSignIn('Github')}>
+      <button className="button social-btn" onClick={() => props.handleSignIn('Github')}>
         <p>Github</p>
-      </span>
-      <span className="social-btn" onClick={() => props.handleSignIn('Facebook')}>
+      </button>
+      <button className="button social-btn" onClick={() => props.handleSignIn('Facebook')}>
         <p>Facebook</p>
-      </span>
+      </button>
       <p>Current user: {props.currentUser}</p>
       <div className="signout">
         {props.currentUser !== 'anonymous' &&
-        <span className="social-tbn" onClick={props.signOutUsers}>
+        <button className="button social-tbn" onClick={props.signOutUsers}>
           <p>Sign Out</p>
-        </span>
+        </button>
         }
       </div>
     </div>

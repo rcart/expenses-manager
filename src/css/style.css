@@ -257,4 +257,24 @@ p button:hover {
 
 .social-login-container * {
   font-size: 12px;
+  align-self: center;
+}
+
+.social-login-container button {
+  background-color: white;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+  border: 1px solid darkcyan;
+  border-radius: 5px;
+}
+
+.button:hover {
+  font-weight: bold;
+}
+
+.button p {
+  justify-content: center;
 }
