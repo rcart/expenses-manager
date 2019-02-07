@@ -201,6 +201,13 @@ p button:hover {
     width: 50%;
     margin: 0 auto;
   }
+
+  /* Social elements styling */
+  .social-login-container > * {
+    margin: 5px;
+    max-width: 90%;
+    flex-direction: row;
+  }
 }
 
 /* This is for mobiles */
@@ -242,13 +249,18 @@ p button:hover {
     width: 70%;
     margin: 0 auto;
   }
+
+  /* Social elements styling */
+  .social-login-container {
+    max-width: 98%;
+  }
 }
 
 /* Styling the social logins */
 .social-login-container {
   padding: 5px;
   justify-content: space-evenly;
-  max-width: 80%;
+  margin-top: 10px;
 }
 
 .social-login-title {
@@ -277,4 +289,25 @@ p button:hover {
 
 .button p {
   justify-content: center;
+}
+
+.avatar-container {
+  padding: 5px;
+  justify-content: space-evenly;
+}
+
+.avatar-container > * {
+  align-self: center;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.avatar-container button {
+  background-color: white;
+}
+
+.avatar-container .avatar-pict {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

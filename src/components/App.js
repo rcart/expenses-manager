@@ -17,14 +17,18 @@ class App extends Component {
     modalVisible: false,
     modalTitle: '',
     // Firebase related state
-    currentUser: 'anonymous',
+    currentUser: {
+      username: 'anonymous',
+      avatar: 'none',
+      name: 'Anonymous user'
+    },
     socialPlatform: ''
   };
 
   // Here I need to get all the items from Firebase and update the app's state
   // once the App component is mounted
   componentWillMount() {
-    const user = this.state.currentUser;
+    const user = this.state.currentUser.username;
     this.getItemsFromDb(user, 'incomes');
     this.getItemsFromDb(user, 'expenses');
   }
@@ -34,7 +38,11 @@ class App extends Component {
     auth.signInWithPopup(provider)
       .then( res => {
         this.setState({
-          currentUser: res.user.uid,
+          currentUser: {
+            username: res.user.uid,
+            avatar: res.user.photoURL,
+            name: res.user.displayName
+          },
           socialPlatform: platform
         })
         this.getItemsFromDb(res.user.uid, 'incomes');
@@ -49,9 +57,15 @@ class App extends Component {
       this.setState({ 
         incomes: [],
         expenses: [],
-        currentUser: 'anonymous',
+        currentUser: {
+          username: 'anonymous',
+          avatar: 'none',
+          name: 'Anonymous user'
+        },
         socialPlatform: ''
       });
+      this.getItemsFromDb('anonymous', 'incomes');
+      this.getItemsFromDb('anonymous', 'expenses');
     });
   }
 
@@ -73,7 +87,7 @@ class App extends Component {
 
   addItem= (data, to) => {
     // Saving data to Firebase before pushing to state
-    const user = this.state.currentUser;
+    const user = this.state.currentUser.username;
     const key = database.ref().child(`${user}/${to}`).push(data).key;
     data.key = key;
     let items;
@@ -83,7 +97,7 @@ class App extends Component {
   }
 
   removeItem = (data, key) => {
-    const user = this.state.currentUser;
+    const user = this.state.currentUser.username;
     const items = this.state[data].filter(item => item.key !== key);
     this.setState({ [data]: items });
     //Remove data from Firebase
