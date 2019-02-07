@@ -2,7 +2,7 @@
 
 # EXPENSES MANAGER
 
-This web application gives you a clean, basic and minimal interface to track your **Incomes** and **Expenses**. It was developed using React and vanilla CSS.
+This web application gives you a clean, basic and minimal interface to track your **Incomes** and **Expenses**. It was developed using React, Firebase and vanilla CSS.
 
 ## Features
 * Add and remove Incomes/Expenses
@@ -10,8 +10,11 @@ This web application gives you a clean, basic and minimal interface to track you
 * Responsive design for desktops, tablets and mobiles
 
 ## Code features
-* ReactJS
+* ReactJS as Frontend
 * PropTypes
+* Firebase as backend
+* Social networks authentication (GitHub and Facebook)
+* Anonymous user for those that doesn't care about sign in
 * Testing with Jest/Enzyme
 * CI/CD using:
     * GitHub for repository
