@@ -1,5 +1,6 @@
 /* Styles for main containers */
 .wrapper {
+  font-family: Helvetica, sans-serif;
   max-width: 70%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 20px;
@@ -200,6 +201,13 @@ p button:hover {
     width: 50%;
     margin: 0 auto;
   }
+
+  /* Social elements styling */
+  .social-login-container > * {
+    margin: 5px;
+    max-width: 90%;
+    flex-direction: row;
+  }
 }
 
 /* This is for mobiles */
@@ -241,4 +249,65 @@ p button:hover {
     width: 70%;
     margin: 0 auto;
   }
+
+  /* Social elements styling */
+  .social-login-container {
+    max-width: 98%;
+  }
+}
+
+/* Styling the social logins */
+.social-login-container {
+  padding: 5px;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.social-login-title {
+  font-weight: normal;
+}
+
+.social-login-container * {
+  font-size: 12px;
+  align-self: center;
+}
+
+.social-login-container button {
+  background-color: white;
+}
+
+.button {
+  width: 80px;
+  height: 40px;
+  border: 1px solid darkcyan;
+  border-radius: 5px;
+}
+
+.button:hover {
+  font-weight: bold;
+}
+
+.button p {
+  justify-content: center;
+}
+
+.avatar-container {
+  padding: 5px;
+  justify-content: space-evenly;
+}
+
+.avatar-container > * {
+  align-self: center;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.avatar-container button {
+  background-color: white;
+}
+
+.avatar-container .avatar-pict {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
