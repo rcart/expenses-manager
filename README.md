@@ -8,13 +8,13 @@ This web application gives you a clean, basic and minimal interface to track you
 * Add and remove Incomes/Expenses
 * It shows the TOP Income/expense
 * Responsive design for desktops, tablets and mobiles
+* Social networks authentication (GitHub and Facebook) to save your changes
+* Anonymous user for those that doesn't care about sign in
 
 ## Code features
 * ReactJS as Frontend
 * PropTypes
 * Firebase as backend
-* Social networks authentication (GitHub and Facebook)
-* Anonymous user for those that doesn't care about sign in
 * Testing with Jest/Enzyme
 * CI/CD using:
     * GitHub for repository
